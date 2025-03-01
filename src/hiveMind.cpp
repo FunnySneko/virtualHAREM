@@ -10,8 +10,7 @@ void HiveMind::Display() {
     }
 }
 
-Person HiveMind::CreatePerson(std::string name)
-{
+Person HiveMind::CreatePerson(std::string name) {
     Person person(dataManager->EmitData(DATA_TYPE::PERSON, name));
     people.push_back(person);
 }

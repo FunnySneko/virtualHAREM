@@ -14,8 +14,7 @@ DataManager::DataManager(DataStack *dataStack) {
     this->dataStack = dataStack;
 }
 
-DataPiece *DataManager::EmitData(DATA_TYPE dataType, int numericalData, std::string stringData)
-{
+DataPiece *DataManager::EmitData(DATA_TYPE dataType, int numericalData, std::string stringData) {
     DataPiece dataPiece(dataType, numericalData, stringData);
     return dataStack->AddData(dataPiece);
 }
@@ -32,4 +31,5 @@ DataPiece *DataManager::EmitData(DATA_TYPE dataType, std::string stringData) {
 
 DataPiece *DataStack::AddData(DataPiece dataPiece) {
     stack.push_back(dataPiece);
+    return &stack[stack.size()];
 }

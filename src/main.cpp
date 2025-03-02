@@ -1,10 +1,9 @@
-#include "virtualHarem.h"
+#include "hiveMind.h"
 
-VirtualHarem virtualHarem;
+WorldManager worldManager;
+HiveMind hiveMind(&worldManager);
 
 int main() {
-    virtualHarem.hiveMind->CreatePerson("TEST_GUY_1");
-    virtualHarem.hiveMind->CreatePerson("TEST_GUY_2");
-    //virtualHarem.hiveMind->CreatePerson("TEST_GUY_3");
-    virtualHarem.hiveMind->Display();
+    hiveMind.CreatePerson("TEST_GUY_1");
+    hiveMind.Display();
 }

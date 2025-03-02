@@ -1,7 +1,15 @@
 #include "hiveMind.h"
 
-HiveMind::HiveMind(DataManager *dataManager) {
-    this->dataManager = dataManager;
+Person::Person(Object *thisPerson) {
+    this->thisPerson = thisPerson;
+}
+
+void Person::Display() {
+    thisPerson->thisObject->Display("NAME");
+}
+
+HiveMind::HiveMind(WorldManager *worldManager) {
+    this->worldManager = worldManager;
 }
 
 void HiveMind::Display() {
@@ -10,7 +18,8 @@ void HiveMind::Display() {
     }
 }
 
-Person HiveMind::CreatePerson(std::string name) {
-    Person person(dataManager->EmitData(DATA_TYPE::PERSON, name));
+void HiveMind::CreatePerson(std::string name)
+{
+    Person person(worldManager->objectiveWorld.CreateObject(worldManager->objectiveWorld.dataManager.EmitData(DATA_TYPE::PERSON, name)));
     people.push_back(person);
 }

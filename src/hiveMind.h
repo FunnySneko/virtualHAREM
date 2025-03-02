@@ -1,12 +1,19 @@
 #pragma once
-#include "person.h"
+#include "world.h"
+
+class Person {
+public:
+    Person(Object* thisPerson);
+    void Display();
+    Object* thisPerson;
+    SubjectiveWorld world;
+};
 
 class HiveMind {
 public:
-    HiveMind(DataManager* dataManager);
+    HiveMind(WorldManager* worldManager);
     void Display();
-    Person CreatePerson(std::string name);
-private:
+    void CreatePerson(std::string name);
+    WorldManager* worldManager;
     std::vector<Person> people;
-    DataManager* dataManager;
 };

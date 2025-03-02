@@ -31,5 +31,5 @@ DataPiece *DataManager::EmitData(DATA_TYPE dataType, std::string stringData) {
 
 DataPiece *DataStack::AddData(DataPiece dataPiece) {
     stack.push_back(dataPiece);
-    return &stack[stack.size()];
+    return &stack.back();
 }

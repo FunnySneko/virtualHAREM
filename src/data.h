@@ -20,13 +20,8 @@ public:
 
 class DataStack {
 public:
-    DataPiece* AddData(DataPiece dataPiece);
+    DataPiece* AddData(DATA_TYPE dataType, int numericalData, std::string stringData);
 private:
-    std::vector<DataPiece> stack;
-};
-
-class DataPointerStack {
-public:
     std::vector<DataPiece*> stack;
 };
 

@@ -14,5 +14,4 @@ public:
     Person(DataPiece* self);
     void Display();
     DataPiece* self;
-    DataPointerStack attributes;
 };

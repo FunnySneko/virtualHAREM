@@ -15,21 +15,19 @@ DataManager::DataManager(DataStack *dataStack) {
 }
 
 DataPiece *DataManager::EmitData(DATA_TYPE dataType, int numericalData, std::string stringData) {
-    DataPiece dataPiece(dataType, numericalData, stringData);
-    return dataStack->AddData(dataPiece);
+    return dataStack->AddData(dataType, numericalData, stringData);
 }
 
 DataPiece *DataManager::EmitData(DATA_TYPE dataType, int numericalData) {
-    DataPiece dataPiece(dataType, numericalData, "NO-DATA");
-    return dataStack->AddData(dataPiece);
+    return dataStack->AddData(dataType, numericalData, "NO-DATA");
 }
 
 DataPiece *DataManager::EmitData(DATA_TYPE dataType, std::string stringData) {
-    DataPiece dataPiece(dataType, -1, stringData);
-    return dataStack->AddData(dataPiece);
+    return dataStack->AddData(dataType, -1, stringData);
 }
 
-DataPiece *DataStack::AddData(DataPiece dataPiece) {
+DataPiece *DataStack::AddData(DATA_TYPE dataType, int numericalData, std::string stringData) {
+    DataPiece* dataPiece = new DataPiece(dataType, numericalData, stringData);
     stack.push_back(dataPiece);
-    return &stack.back();
+    return stack.back();
 }

@@ -66,6 +66,7 @@ public:
 class DataStack {
 public:
     DataPiece* AddData(DATA_TYPE dataType, int numericalData, std::string stringData);
+    DataPiece* GetData(DATA_TYPE dataType, std::string stringData);
 private:
     std::vector<DataPiece*> stack;
 };
@@ -96,6 +97,7 @@ public:
     DataPiece* EmitData(DATA_TYPE dataType, int numericalData, std::string stringData);
     DataPiece* EmitData(DATA_TYPE dataType, int numericalData);
     DataPiece* EmitData(DATA_TYPE dataType, std::string stringData);
+    DataPiece* GetData(DATA_TYPE dataType, std::string stringData);
 private:
     DataStack dataStack;
 };

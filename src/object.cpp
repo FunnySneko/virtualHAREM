@@ -2,6 +2,7 @@
 
 Object::Object(DataPiece *thisObject) {
     this->thisObject = thisObject;
+    attributes.AddAttribute(ATTRIBUTE_TYPE::SELF, thisObject, true);
 }
 
 void Object::Display() {

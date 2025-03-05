@@ -4,8 +4,10 @@ WorldManager worldManager;
 HiveMind hiveMind(&worldManager.objectiveWorld);
 
 int main() {
-    hiveMind.CreatePerson("TEST_GUY_1");
-    hiveMind.CreatePerson("TEST_GUY_2");
-    hiveMind.CreatePerson("TEST_GUY_3");
+    worldManager.objectiveWorld.CreateLocation("KITCHEN");
+    hiveMind.CreatePerson("PEARS", "KITCHEN");
+    hiveMind.CreatePerson("DAVI", "KITCHEN");
+    hiveMind.CreatePerson("DORI", "KITCHEN");
+    hiveMind.CreatePerson("FLO", "KITCHEN");
     worldManager.objectiveWorld.Display();
 }

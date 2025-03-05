@@ -26,10 +26,22 @@ DataPiece *DataManager::EmitData(DATA_TYPE dataType, std::string stringData) {
     return dataStack.AddData(dataType, -1, stringData);
 }
 
+DataPiece *DataManager::GetData(DATA_TYPE dataType, std::string stringData) {
+    return dataStack.GetData(dataType, stringData);
+}
+
 DataPiece *DataStack::AddData(DATA_TYPE dataType, int numericalData, std::string stringData) {
     DataPiece* dataPiece = new DataPiece(dataType, numericalData, stringData);
     stack.push_back(dataPiece);
     return stack.back();
+}
+
+DataPiece *DataStack::GetData(DATA_TYPE dataType, std::string stringData) {
+    for(DataPiece* dataPiece : stack) {
+        if(dataPiece->dataType == dataType && dataPiece->stringData == stringData) {
+            return dataPiece;
+        }
+    }
 }
 
 Attribute *AttributeStack::AddAttribute(ATTRIBUTE_TYPE type, DataPiece *attributeData, bool isObservable) {

@@ -10,9 +10,34 @@ enum class DATA_TYPE {
     LOCATION,
 };
 
+static std::vector<std::string> dataNames = {
+    "PERSON",
+    "ITEM",
+    "LOCATION",
+};
+
+enum class ITEM_TYPE {
+    SAUSAGE,
+    SODA,
+    PARACETAMOL,
+};
+
+static std::vector<std::string> itemNames = {
+    "SAUSAGE",
+    "SODA",
+    "PARACETAMOL",
+};
+
 enum class ATTRIBUTE_TYPE {
     SELF,
     PLACE,
+    INHABITANT,
+};
+
+static std::vector<std::string> attributeNames = {
+    "SELF",
+    "PLACE",
+    "INHABITANT",
 };
 
 static std::vector<ATTRIBUTE_TYPE> uniqueAttributes = {
@@ -54,7 +79,7 @@ private:
 
 class AttributeStack {
 public:
-    void AddAttribute(ATTRIBUTE_TYPE type, DataPiece* attributeData, bool isObservable);
+    Attribute* AddAttribute(ATTRIBUTE_TYPE type, DataPiece* attributeData, bool isObservable);
     void RemoveAttribute(ATTRIBUTE_TYPE type);
     std::vector<Attribute> stack;
 };

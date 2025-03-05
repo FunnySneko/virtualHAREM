@@ -4,16 +4,14 @@
 class Person {
 public:
     Person(Object* thisPerson);
-    void Display();
     Object* thisPerson;
-    SubjectiveWorld world;
+    SubjectiveWorld subjectiveWorld;
 };
 
 class HiveMind {
 public:
-    HiveMind(WorldManager* worldManager);
-    void Display();
+    HiveMind(ObjectiveWorld* world);
     void CreatePerson(std::string name);
-    WorldManager* worldManager;
+    ObjectiveWorld* world;
     std::vector<Person> people;
 };

@@ -1,7 +1,11 @@
 #include "data.h"
 
 void DataPiece::Display(std::string label) {
-    std::cout << label << ": " <<  stringData << " " << numericalData << std::endl;
+    std::cout << label << ": " <<  stringData;
+    if (numericalData != -1) {
+        std::cout << " " << numericalData << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 DataPiece::DataPiece(DATA_TYPE dataType, int numericalData, std::string stringData) {
@@ -28,14 +32,15 @@ DataPiece *DataStack::AddData(DATA_TYPE dataType, int numericalData, std::string
     return stack.back();
 }
 
-void AttributeStack::AddAttribute(ATTRIBUTE_TYPE type, DataPiece *attributeData, bool isObservable) {
+Attribute *AttributeStack::AddAttribute(ATTRIBUTE_TYPE type, DataPiece *attributeData, bool isObservable) {
     Attribute attribute(type, attributeData, isObservable);
-    for (ATTRIBUTE_TYPE uniqueAttribute : uniqueAttributes) {
+    for (ATTRIBUTE_TYPE& uniqueAttribute : uniqueAttributes) {
         if (type == uniqueAttribute) {
             RemoveAttribute(type);
         }
     }
     stack.push_back(attribute);
+    return &stack.back();
 }
 
 void AttributeStack::RemoveAttribute(ATTRIBUTE_TYPE type) {

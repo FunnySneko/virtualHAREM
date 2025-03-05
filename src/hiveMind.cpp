@@ -4,22 +4,12 @@ Person::Person(Object *thisPerson) {
     this->thisPerson = thisPerson;
 }
 
-void Person::Display() {
-    thisPerson->thisObject->Display("NAME");
+HiveMind::HiveMind(ObjectiveWorld *world) {
+    this->world = world;
 }
 
-HiveMind::HiveMind(WorldManager *worldManager) {
-    this->worldManager = worldManager;
-}
-
-void HiveMind::Display() {
-    for (Person& person : people) {
-        person.Display();
-    }
-}
-
-void HiveMind::CreatePerson(std::string name)
-{
-    Person person(worldManager->objectiveWorld.CreateObject(worldManager->objectiveWorld.dataManager.EmitData(DATA_TYPE::PERSON, name)));
+void HiveMind::CreatePerson(std::string name) {
+    Person person(world->CreateObject(world->dataManager.EmitData(DATA_TYPE::PERSON, name)));
+    person.thisPerson->attributes.AddAttribute(ATTRIBUTE_TYPE::SELF, person.thisPerson->thisObject, true);
     people.push_back(person);
 }

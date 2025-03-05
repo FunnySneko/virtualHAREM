@@ -1,9 +1,11 @@
 #include "hiveMind.h"
 
 WorldManager worldManager;
-HiveMind hiveMind(&worldManager);
+HiveMind hiveMind(&worldManager.objectiveWorld);
 
 int main() {
     hiveMind.CreatePerson("TEST_GUY_1");
-    hiveMind.Display();
+    hiveMind.CreatePerson("TEST_GUY_2");
+    hiveMind.CreatePerson("TEST_GUY_3");
+    worldManager.objectiveWorld.Display();
 }

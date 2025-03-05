@@ -10,7 +10,7 @@ public:
 class HiveMind {
 public:
     HiveMind(ObjectiveWorld* world);
-    void CreatePerson(std::string name, std::string locationName);
+    void CreatePerson(std::string name, std::string locationName, PERSON_ATTRIBUTE gender);
     ObjectiveWorld* world;
     std::vector<Person> people;
 };

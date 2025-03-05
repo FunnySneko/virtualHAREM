@@ -5,12 +5,16 @@
 #include <algorithm>
 
 enum class DATA_TYPE {
+    FALLBACK,
     PERSON,
+    PERSON_ATTRIBUTE,
     ITEM,
     LOCATION,
 };
 
 static std::vector<std::string> dataNames = {
+    "FALLBACK",
+    "PERSON_ATTRIBUTE",
     "PERSON",
     "ITEM",
     "LOCATION",
@@ -32,12 +36,24 @@ enum class ATTRIBUTE_TYPE {
     SELF,
     PLACE,
     INHABITANT,
+    GENDER,
 };
 
 static std::vector<std::string> attributeNames = {
     "SELF",
     "PLACE",
     "INHABITANT",
+    "GENDER",
+};
+
+enum class PERSON_ATTRIBUTE {
+    GENDER_MALE,
+    GENDER_FEMALE,
+};
+
+static std::vector<std::string> personAttributeNames = {
+    "MALE",
+    "FEMALE",
 };
 
 static std::vector<ATTRIBUTE_TYPE> uniqueAttributes = {
@@ -65,6 +81,7 @@ public:
 
 class DataStack {
 public:
+    void Display();
     DataPiece* AddData(DATA_TYPE dataType, int numericalData, std::string stringData);
     DataPiece* GetData(DATA_TYPE dataType, std::string stringData);
 private:
@@ -94,10 +111,14 @@ private:
 
 class DataManager {
 public:
+    DataManager();
+    void DisplayData();
+    void CreateStaticData();
     DataPiece* EmitData(DATA_TYPE dataType, int numericalData, std::string stringData);
     DataPiece* EmitData(DATA_TYPE dataType, int numericalData);
     DataPiece* EmitData(DATA_TYPE dataType, std::string stringData);
     DataPiece* GetData(DATA_TYPE dataType, std::string stringData);
 private:
     DataStack dataStack;
+    DataPiece* fallbackData;
 };

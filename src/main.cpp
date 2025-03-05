@@ -5,9 +5,10 @@ HiveMind hiveMind(&worldManager.objectiveWorld);
 
 int main() {
     worldManager.objectiveWorld.CreateLocation("KITCHEN");
-    hiveMind.CreatePerson("PEARS", "KITCHEN");
-    hiveMind.CreatePerson("DAVI", "KITCHEN");
-    hiveMind.CreatePerson("DORI", "KITCHEN");
-    hiveMind.CreatePerson("FLO", "KITCHEN");
+    hiveMind.CreatePerson("PEARS", "KITCHEN", PERSON_ATTRIBUTE::GENDER_MALE);
+    hiveMind.CreatePerson("DAVI",  "KITCHEN", PERSON_ATTRIBUTE::GENDER_MALE);
+    hiveMind.CreatePerson("DORI",  "KITCHEN", PERSON_ATTRIBUTE::GENDER_FEMALE);
+    hiveMind.CreatePerson("FLO",   "KITCHEN", PERSON_ATTRIBUTE::GENDER_FEMALE);
     worldManager.objectiveWorld.Display();
+    worldManager.objectiveWorld.dataManager.DisplayData();
 }

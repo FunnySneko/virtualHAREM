@@ -8,7 +8,7 @@ public:
     void AddInhabitant(Object& object);
     Object* thisLocation;
     std::vector<Object*> inhabitants;
-};    
+};
 
 class World {
 public:

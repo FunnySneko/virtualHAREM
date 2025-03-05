@@ -3,7 +3,7 @@
 void DataPiece::Display(std::string label) {
     std::cout << label << ": " <<  stringData;
     if (numericalData != -1) {
-        std::cout << " " << numericalData << std::endl;
+        std::cout << " " << numericalData;
     }
     std::cout << std::endl;
 }
@@ -12,6 +12,20 @@ DataPiece::DataPiece(DATA_TYPE dataType, int numericalData, std::string stringDa
     this->dataType = dataType;
     this->numericalData = numericalData;
     this->stringData = stringData;
+}
+
+DataManager::DataManager() {
+    CreateStaticData();
+}
+
+void DataManager::DisplayData() {
+    dataStack.Display();
+}
+
+void DataManager::CreateStaticData() {
+    fallbackData = EmitData(DATA_TYPE::FALLBACK, "ERROR");
+    EmitData(DATA_TYPE::PERSON_ATTRIBUTE, personAttributeNames[int(PERSON_ATTRIBUTE::GENDER_MALE)]);
+    EmitData(DATA_TYPE::PERSON_ATTRIBUTE, personAttributeNames[int(PERSON_ATTRIBUTE::GENDER_FEMALE)]);
 }
 
 DataPiece *DataManager::EmitData(DATA_TYPE dataType, int numericalData, std::string stringData) {
@@ -27,7 +41,19 @@ DataPiece *DataManager::EmitData(DATA_TYPE dataType, std::string stringData) {
 }
 
 DataPiece *DataManager::GetData(DATA_TYPE dataType, std::string stringData) {
-    return dataStack.GetData(dataType, stringData);
+    DataPiece* dataPiece = dataStack.GetData(dataType, stringData);
+    if(dataPiece != nullptr) {
+        return dataPiece;
+    } else {
+        return fallbackData;
+    }
+}
+
+void DataStack::Display() {
+    std::cout << "DATA STACK" << std::endl;
+    for (DataPiece* dataPiece : stack) {
+        dataPiece->Display("DATA_PIECE");
+    }
 }
 
 DataPiece *DataStack::AddData(DATA_TYPE dataType, int numericalData, std::string stringData) {
@@ -42,6 +68,7 @@ DataPiece *DataStack::GetData(DATA_TYPE dataType, std::string stringData) {
             return dataPiece;
         }
     }
+    return nullptr;
 }
 
 Attribute *AttributeStack::AddAttribute(ATTRIBUTE_TYPE type, DataPiece *attributeData, bool isObservable) {

@@ -8,9 +8,14 @@ HiveMind::HiveMind(ObjectiveWorld *world) {
     this->world = world;
 }
 
-void HiveMind::CreatePerson(std::string name, std::string locationName) {
-    Person person(world->CreateObject(world->dataManager.EmitData(DATA_TYPE::PERSON, name)));
-    Location* location = world->GetLocation(locationName);
-    location->AddInhabitant(*person.thisPerson);
-    people.push_back(person);
+void HiveMind::CreatePerson(std::string name, std::string locationName, PERSON_ATTRIBUTE gender) {
+    if (gender == PERSON_ATTRIBUTE::GENDER_MALE || gender == PERSON_ATTRIBUTE::GENDER_FEMALE) {
+        Person person(world->CreateObject(world->dataManager.EmitData(DATA_TYPE::PERSON, name)));
+        Location* location = world->GetLocation(locationName);
+        if(location != nullptr) {
+            location->AddInhabitant(*person.thisPerson);
+            person.thisPerson->attributes.AddAttribute(ATTRIBUTE_TYPE::GENDER, world->dataManager.GetData(DATA_TYPE::PERSON_ATTRIBUTE, personAttributeNames[int(gender)]), true);
+            people.push_back(person);
+        }
+    }
 }
